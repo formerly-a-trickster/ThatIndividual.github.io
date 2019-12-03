@@ -1,39 +1,595 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:700");
+@import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
+
+html {
+  font-size: 16pt;
+}
+
+canvas, button, .unselectable {
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
 body {
   margin: 0px;
 }
 
+p, button {
+  font-family: "Inconsolata";
+  font-size: 14px;
+}
+
+button {
+  margin: 0px;
+  border: 0px;
+  outline: 0px;
+  padding: 0px;
+  background-color: #DDDDDD;
+}
+
 #desktop {
-  width: 800px;
-  height: 600px;
-  background-color: #008080;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("img/background.png");
+  background-repeat: repeat repeat;
+  overflow: hidden;
+  position: relative;
+}
+
+#taskbar {
+  height: 28px;
+  position: absolute;
+  bottom: 0px;
+  width: 100vw;
+  background-image: url("img/UI/wm top.png");
+  background-repeat: repeat-x;
+  background-color: #C0C0C0;
+  z-index: 1000;
+}
+
+#start-button {
+  border: 0px;
+  outline: 0px;
+  height: 22px;
+  width: 40px;
+  position: absolute;
+  top: 4px;
+  left: 2px;
+  padding: 0px;
+}
+
+#start-button p {
+  margin: 0px auto;
+  text-align: center;
+}
+
+#tray-tasks {
+  position: absolute;
+  left: 44px;
+  right: 46px;
+  top: 4px;
+  height: 22px;
+  display: flex;
+}
+
+.task {
+  min-width: 0px;
+  flex-direction: row;
+  width: 200px;
+  height: 22px;
+  margin: 0px 1px;
+}
+
+.task p {
+  min-width: 0px;
+  margin: 3px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#tray-timer {
+  height: 20px;
+  width: 40px;
+  position: absolute;
+  right: 2px;
+  top: 4px;
+  border-top: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-right: 1px solid #FFFFFF;
+  border-bottom: 1px solid #FFFFFF;
+}
+
+#tray-timer p {
+  margin: 3px auto;
+  text-align: center;
+}
+
+#window-container {
+  height: 0px;
 }
 
 .window {
-  width: 300px;
-  height: 200px;
-  border: 1px solid black;
+  position: absolute;
   background-color: #C0C0C0;
 }
 
+.window.hidden {
+  display: none;
+}
+
+.window .title-bar {
+  cursor: grab;
+  cursor: -webkit-grab;
+}
+
+.window.dragged .title-bar {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
 .title-bar {
-  position: relative;
-  box-sizing: border-box;
-  height: 18px;
-  padding: 2px;
-  background-color: gray;
-  width: 100%;
+  display: flex;
+  font-family: "Proggy";
+  color: #C0C0C0;
+  background: linear-gradient(to right, #232323, #868686);
+  height: 14px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+}
+
+.title-bar.focus {
+  color: #FFFFFF;
+  background: linear-gradient(to right, #232138, #129dff);
 }
 
 .title-bar p {
+  flex: 1;
   float: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0px 0px 0px 4px;
+  font-size: 14px;
+}
+
+.title-button {
+  flex: initial;
+  border: 0px;
+  outline: 0px;
+  margin: 0px 2px;
+  padding: 0px;
+  width: 16px;
+  height: 14px;
+  cursor: pointer;
+}
+
+.prg-wrapper {
+  position: absolute;
+  top: 24px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+}
+
+.program {
+  background-color: #FFFFFF;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  overflow: auto;
+}
+
+.notepad p {
+  color: #000000;
+  font-family: "Inconsolata";
+  padding: 5px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: 0px;
+  outline: 0px;
+}
+
+.resume {
+  padding: 5px;
+  background-color: #232138;
+}
+
+.resume header {
+  position: relative;
+  height: 200px;
+}
+
+.resume header h1 {
+  position: absolute;
+  top: 69px;
+  left: 68px;
+  height: 200px;
+  width: 271px;
+  font-family: "Poppins";
+  font-size: 70px;
+  line-height: 65px;
+  color: #F8EEDA;
+  text-shadow: 3px 7px #FF2C4B;
   margin: 0px;
 }
 
-.title-bar-btn {
+.resume .details {
+  margin: 5px 0px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.resume p, .resume li {
+  color: #F8EEDA; 
+  font-family: "Inconsolata";
+  font-size: 15px;
+  margin: 0px 0px 17px 20px;
+}
+
+.resume li {
+  margin: 0px;
+}
+
+#last-name {
+  margin-left: 163px;
+}
+
+.resume .console {
+  position: absolute;
+  top: 10px;
+  left: 280px;
+  height: 163px;
+  width: 379px;
+  border: 1px solid #FF2C4B;
+  padding: 10px;
+  white-space: pre-wrap;
+}
+
+.resume .console p {
+  margin: 0px;
+}
+
+.resume #skills {
+  position: absolute;
+  left: 474px;
+  top: 205px;
+  width: 210px;
+}
+
+.resume #education {
+  width: 462px;
+}
+
+.resume #work {
+  width: 462px;
+}
+
+.resume section {
+  border: 1px solid #FF2C4B;
+  margin-bottom: 10px;
+}
+
+.resume section h1 {
+  font-family: "Poppins";
+  font-size: 30px;
+  color: #F8EEDA;
+  text-shadow: 2px 3px #FF2C4B;
+  margin: 10px 0px 0px 20px;
+}
+
+.resume section > div {
+  clear: right;
+  display: inline-block;
+  width: 460px;
+}
+
+.resume .right {
   float: right;
-  box-sizing: content-box;
-  padding: 0px;
-  width: 12px;
-  height: 10px;
-  border: 1px solid black;
+  width: 130px;
+}
+
+.resume .right p {
+  margin-left: 0px;
+}
+
+.resume .right .emphasis {
+  font-weight: 700;
+}
+
+.resume .left {
+  width: 300px;
+}
+
+.resume .left .highlight {
+  color: #F99820;
+}
+
+.game-of-life {
+  width: 301px;
+  height: 323px;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.game-of-life canvas {
+  background-color: #232138;
+}
+
+.game-of-life .menu-padding {
+  width: 157px;
+  height: 22px;
+  background-color: #DDDDDD;
+}
+
+.tetris {
+  overflow: hidden;
+}
+
+.tetris canvas {
+  outline: none;
+  background-color: #000000;
+}
+
+.maze-gen {
+  overflow: hidden;
+}
+
+.maze-gen canvas {
+  background-color: #232138;
+}
+
+.music-player {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #C0C0C0;
+  overflow: hidden;
+}
+
+.music-player p {
+  margin: 0px;
+}
+
+.music-timer {
+  color: #FF2C4B;
+  background-color: #232138;
+  width: 150px;
+  height: 44px;
+  box-sizing: border-box;
+  padding: 5px 0px;
+}
+
+.music-timer p {
+  margin: 0px;
+  font-family: "Inconsolata";
+  font-size: 30px;
+  text-align: center;
+}
+
+.btn-large {
+  width: 72px;
+  height: 22px;
+  background-color: #DDDDDD;
+}
+
+.btn-small {
+  width: 24px;
+  height: 22px;
+  background-color: #DDDDDD;
+}
+
+.music-controls {
+  width: 120px;
+  height: 44px;
+  display: flex;
+  flex-wrap: wrap;
+  flex: initial;
+}
+
+.music-info {
+  display: flex;
+  flex-wrap: wrap;
+  flex: initial;
+  width: 278px;
+  height: 40px;
+}
+
+.music-info .label {
+  width: 50px;
+  padding-right: 5px;
+  flex: initial;
+  line-height: 22px;
+  height: 20px;
+  text-align: right;
+}
+
+.music-info .data {
+  width: 213px;
+  flex: initial;
+  padding: 0px 5px;
+  line-height: 22px;
+  height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background-color: white;
+}
+
+.margin.top {
+  height: 4px;
+  position: absolute;
+  top: 0px;
+  left: 3px;
+  right: 3px;
+  background-image: url("img/UI/wm top.png");
+  background-position: top;
+  background-repeat: repeat-x;
+}
+
+.margin.bottom {
+  height: 4px;
+  position: absolute;
+  bottom: 0px;
+  left: 3px;
+  right: 3px;
+  background-image: url("img/UI/wm bottom.png");
+  background-position: bottom;
+  background-repeat: repeat-x;
+}
+
+.margin.left {
+  width: 4px;
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 0px;
+  background-image: url("img/UI/wm left.png");
+  background-position: left;
+  background-repeat: repeat-y;
+}
+
+.margin.right {
+  width: 4px;
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  right: 0px;
+  background-image: url("img/UI/wm right.png");
+  background-position: right;
+  background-repeat: repeat-y;
+}
+
+.margin.topleft {
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-image: url("img/UI/wm top left.png");
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+
+.margin.topright {
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-image: url("img/UI/wm top right.png");
+  background-position: top right;
+  background-repeat: no-repeat;
+}
+
+.margin.bottomleft {
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background-image: url("img/UI/wm bottom left.png");
+  background-position: bottom left;
+  background-repeat: no-repeat;
+}
+
+.margin.bottomright {
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  background-image: url("img/UI/wm bottom right.png");
+  background-position: bottom right;
+  background-repeat: no-repeat;
+}
+
+.launcher {
+  width: 64px;
+  margin: 15px 0px 0px 5px;
+  cursor: pointer;
+}
+
+.launcher:hover {
+  border-radius: 20px;
+}
+
+.launcher img {
+  display: block;
+  margin: 0px 16px;
+  padding-top: 6px;
+}
+
+.launcher p {
+  color: white;
+  text-shadow: 0px 1px 0px black;
+  margin: 0px;
+  width: 100%;
+  text-align: center;
+  line-height: 1em;
+}
+
+.launcher .shortcut {
+  margin-top: -17px;
+}
+
+.embossed, button {
+  background-image: url("img/UI/bm top left.png"),
+                    url("img/UI/bm top right.png"),
+                    url("img/UI/bm bottom left.png"),
+                    url("img/UI/bm bottom right.png"),
+                    url("img/UI/bm top.png"),
+                    url("img/UI/bm right.png"),
+                    url("img/UI/bm bottom.png"),
+                    url("img/UI/bm left.png");
+  background-position: top left, top right, bottom left, bottom right,
+                       top, right, bottom, left;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat,
+                     repeat-x, repeat-y, repeat-x, repeat-y;
+}
+
+.embossed.pressed, button:active {
+  background-image: url("img/UI/bm top left pressed.png"),
+                    url("img/UI/bm top right pressed.png"),
+                    url("img/UI/bm bottom left pressed.png"),
+                    url("img/UI/bm bottom right pressed.png"),
+                    url("img/UI/bm top pressed.png"),
+                    url("img/UI/bm right pressed.png"),
+                    url("img/UI/bm bottom pressed.png"),
+                    url("img/UI/bm left pressed.png"),
+                    url("img/UI/button background pressed.png");
+  background-position: top left, top right, bottom left, bottom right,
+                       top, right, bottom, left,
+                       top left;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat,
+                     repeat-x, repeat-y, repeat-x, repeat-y,
+                     repeat;
+}
+
+.depressed {
+  background-image: url("img/UI/wm inner top left.png"),
+                    url("img/UI/wm inner top right.png"),
+                    url("img/UI/wm inner bottom left.png"),
+                    url("img/UI/wm inner bottom right.png"),
+                    url("img/UI/wm inner top.png"),
+                    url("img/UI/wm inner right.png"),
+                    url("img/UI/wm inner bottom.png"),
+                    url("img/UI/wm inner left.png");
+  background-position: top left, top right, bottom left, bottom right,
+                       top, right, bottom, left;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat,
+                     repeat-x, repeat-y, repeat-x, repeat-y;
 }

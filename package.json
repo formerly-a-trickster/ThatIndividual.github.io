@@ -4,21 +4,26 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "pack": "webpack",
-    "pack-w": "webpack -w"
+    "build": "webpack",
+    "watch": "webpack -w",
+    "prod": "webpack -p"
   },
   "dependencies": {
     "@types/react": "^15.0.23",
+    "@types/react-addons-perf": "^0.14.18",
     "@types/react-dom": "^15.5.0",
     "@types/react-redux": "^4.4.39",
     "@types/redux": "^3.6.0",
+    "@types/webpack": "^2.2.16",
     "awesome-typescript-loader": "^3.1.2",
     "react": "^15.5.4",
+    "react-addons-perf": "^15.4.2",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
     "source-map-loader": "^0.2.1",
+    "ts-node": "^3.0.6",
     "typescript": "^2.2.2",
-    "webpack": "^2.4.1"
+    "webpack": "^3.0.0"
   }
 }

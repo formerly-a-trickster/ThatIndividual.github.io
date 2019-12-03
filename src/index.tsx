@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+import * as ReactDom from "react-dom";
 
 import { createStore } from "redux";
 import { Provider } from "react-redux";
@@ -10,7 +10,7 @@ import Desktop from "./containers/desktop";
 
 let store = createStore(desktopState);
 
-ReactDOM.render(
+ReactDom.render(
   <Provider store={store}>
     <Desktop />
   </Provider>,

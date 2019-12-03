@@ -1,8 +1,17 @@
 import { combineReducers } from "redux";
 
-import windows from "./windows";
-
+import upid from "./upid";
+import desktopWidth from "./desktopWidth";
+import desktopHeight from "./desktopHeight";
+import isDragging from "./is-dragging";
+import isResizing from "./is-resizing";
+import programs from "./programs";
 
 export default combineReducers({
-  windows
+  upid,
+  desktopWidth,
+  desktopHeight,
+  isDragging,
+  isResizing,
+  programs
 });
